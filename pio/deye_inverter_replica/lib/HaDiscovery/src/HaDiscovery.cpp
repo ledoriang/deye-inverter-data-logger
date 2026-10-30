@@ -21,7 +21,7 @@ namespace
         {DeyeSensor::Pv2Power, "pv2_power", "PV2 Power", "W", "power", "measurement", "mdi:solar-power", 0},
         {DeyeSensor::BatterySoc, "inverter_battery_soc", "Inverter Battery SOC", "%", "battery", "measurement", "mdi:battery", 0},
         {DeyeSensor::BatteryPower, "inverter_battery_power", "Inverter Battery Power", "W", "power", "measurement", "mdi:flash", 0},
-        {DeyeSensor::BatteryVoltage, "inverter_battery_voltage", "Inverter Battery Voltage", "V", "voltage", "measurement", "mdi:flash", 1},
+        {DeyeSensor::BatteryVoltage, "inverter_battery_voltage", "Inverter Battery Voltage", "V", "voltage", "measurement", "mdi:flash", 2},
         {DeyeSensor::TotalLoadPower, "total_load_power", "Total Load Power", "W", "power", "measurement", "mdi:home-lightning-bolt", 0},
         {DeyeSensor::LoadL1Power, "load_l1_power", "Load L1 Power", "W", "power", "measurement", "mdi:flash", 0},
         {DeyeSensor::LoadL2Power, "load_l2_power", "Load L2 Power", "W", "power", "measurement", "mdi:flash", 0},

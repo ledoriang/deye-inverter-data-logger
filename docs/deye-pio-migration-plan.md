@@ -38,19 +38,19 @@ Preserve the ESPHome register types, units, scale factors, device classes, and s
 
 | Home Assistant entity | Register | Decode / scale | Unit | Device class | State class |
 |---|---:|---|---|---|---|
-| PV1 Power | 672 | Unsigned 16-bit | W | power | measurement |
-| PV2 Power | 673 | Unsigned 16-bit | W | power | measurement |
+| PV1 Power | 672 | Signed 16-bit | W | power | measurement |
+| PV2 Power | 673 | Signed 16-bit | W | power | measurement |
 | Inverter Battery SOC | 588 | Unsigned 16-bit | % | battery | measurement |
 | Inverter Battery Power | 590 | Signed 16-bit | W | power | measurement |
-| Inverter Battery Voltage | 587 | Unsigned 16-bit × 0.1 | V | voltage | measurement |
-| Total Load Power | 604 | Signed 16-bit | W | power | measurement |
-| Load L1 Power | 601 | Signed 16-bit | W | power | measurement |
-| Load L2 Power | 602 | Signed 16-bit | W | power | measurement |
-| Load L3 Power | 603 | Signed 16-bit | W | power | measurement |
-| Day PV Energy | 676 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
-| Day Battery Charge | 592 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
-| Day Battery Discharge | 593 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
-| Day Load Energy | 607 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
+| Inverter Battery Voltage | 587 | Unsigned 16-bit × 0.01 | V | voltage | measurement |
+| Total Load Power | 653 | Signed 16-bit | W | power | measurement |
+| Load L1 Power | 650 | Signed 16-bit | W | power | measurement |
+| Load L2 Power | 651 | Signed 16-bit | W | power | measurement |
+| Load L3 Power | 652 | Signed 16-bit | W | power | measurement |
+| Day PV Energy | 529 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
+| Day Battery Charge | 514 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
+| Day Battery Discharge | 515 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
+| Day Load Energy | 526 | Unsigned 16-bit × 0.1 | kWh | energy | total_increasing |
 
 The SOC YAML entry has `skip_updates: 2`. Match its reduced update rate if the Modbus polling design allows it; with a 30-second controller interval this is approximately one update per 90 seconds. The daily energy sensors use `total_increasing` in ESPHome; retain that metadata initially and confirm Home Assistant handles their daily reset behavior as intended.
 

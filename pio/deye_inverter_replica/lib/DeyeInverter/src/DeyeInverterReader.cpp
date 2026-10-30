@@ -71,18 +71,18 @@ bool DeyeInverterReader::pollIfDue(uint32_t nowMs)
         }
     }
 
-    cycleOk = readSensor(DeyeSensor::Pv1Power, 672, false, 1.0f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::Pv2Power, 673, false, 1.0f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::Pv1Power, 672, true, 1.0f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::Pv2Power, 673, true, 1.0f, nowMs) && cycleOk;
     cycleOk = readSensor(DeyeSensor::BatteryPower, 590, true, 1.0f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::BatteryVoltage, 587, false, 0.1f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::TotalLoadPower, 604, true, 1.0f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::LoadL1Power, 601, true, 1.0f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::LoadL2Power, 602, true, 1.0f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::LoadL3Power, 603, true, 1.0f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::DayPvEnergy, 676, false, 0.1f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::DayBatteryCharge, 592, false, 0.1f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::DayBatteryDischarge, 593, false, 0.1f, nowMs) && cycleOk;
-    cycleOk = readSensor(DeyeSensor::DayLoadEnergy, 607, false, 0.1f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::BatteryVoltage, 587, false, 0.01f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::TotalLoadPower, 653, true, 1.0f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::LoadL1Power, 650, true, 1.0f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::LoadL2Power, 651, true, 1.0f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::LoadL3Power, 652, true, 1.0f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::DayPvEnergy, 529, false, 0.1f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::DayBatteryCharge, 514, false, 0.1f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::DayBatteryDischarge, 515, false, 0.1f, nowMs) && cycleOk;
+    cycleOk = readSensor(DeyeSensor::DayLoadEnergy, 526, false, 0.1f, nowMs) && cycleOk;
 
     if (!cycleOk)
     {
@@ -133,11 +133,12 @@ bool DeyeInverterReader::readSensor(
     log.print(" raw=");
     log.print(rawValue);
     log.print(" value=");
-    const uint8_t precision = sensor == DeyeSensor::BatteryVoltage ||
-            sensor == DeyeSensor::DayPvEnergy ||
+    const uint8_t precision = sensor == DeyeSensor::BatteryVoltage
+        ? 2
+        : (sensor == DeyeSensor::DayPvEnergy ||
             sensor == DeyeSensor::DayBatteryCharge ||
             sensor == DeyeSensor::DayBatteryDischarge ||
-            sensor == DeyeSensor::DayLoadEnergy
+            sensor == DeyeSensor::DayLoadEnergy)
         ? 1
         : 0;
     log.println(current.values[index], precision);
